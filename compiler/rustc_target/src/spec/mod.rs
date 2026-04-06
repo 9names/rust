@@ -3613,6 +3613,21 @@ impl Target {
                     ));
                 }
             }
+
+            if matches!(self.arch, Arch::RiscV32 | Arch::RiscV64) {
+                // These extensions have instruction encodings that overlap with Zcd (compressed double precision instructions)
+                // which are present if both the C and D extensions are enabled.
+                for extension in ["zcmp", "zcmt", "xqccmp", "xqciac", "xqcicm"] {
+                    if features_enabled.contains(extension)
+                        && features_enabled.contains("c")
+                        && features_enabled.contains("d")
+                    {
+                        return Err(format!(
+                            "target feature {extension} is not valid when both `c` when `d` are also enabled"
+                        ));
+                    }
+                }
+            }
         }
 
         Ok(())
