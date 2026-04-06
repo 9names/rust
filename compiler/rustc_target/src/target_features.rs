@@ -599,7 +599,7 @@ static RISCV_FEATURES: &[(&str, Stability, ImpliedFeatures)] = &[
         Stability::Forbidden { reason: "unsound because it changes the ABI of atomic operations" },
         &[],
     ),
-    ("m", Stable, &[]),
+    ("m", Stable, &["zmmul"]),
     ("relax", Unstable(sym::riscv_target_feature), &[]),
     (
         "rva23u64",
@@ -700,6 +700,7 @@ static RISCV_FEATURES: &[(&str, Stability, ImpliedFeatures)] = &[
     ("zksed", Stable, &[]),
     ("zksh", Stable, &[]),
     ("zkt", Stable, &[]),
+    ("zmmul", Unstable(sym::riscv_target_feature), &[]),
     ("ztso", Stable, &[]),
     ("zvbb", Unstable(sym::riscv_target_feature), &["zvkb"]), // Zvbb ⊃ Zvkb
     ("zvbc", Unstable(sym::riscv_target_feature), &["zve64x"]),
