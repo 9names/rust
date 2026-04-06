@@ -665,6 +665,7 @@ static RISCV_FEATURES: &[(&str, Stability, ImpliedFeatures)] = &[
     ("zca", Stable, &[]),
     ("zcb", Stable, &["zca"]),
     ("zcmop", Stable, &["zca"]),
+    ("zcmp", Unstable(sym::riscv_target_feature), &[]),
     ("zdinx", Unstable(sym::riscv_target_feature), &["zfinx"]),
     ("zfa", Unstable(sym::riscv_target_feature), &["f"]),
     ("zfbfmin", Unstable(sym::riscv_target_feature), &["f"]), // and a subset of Zfhmin
